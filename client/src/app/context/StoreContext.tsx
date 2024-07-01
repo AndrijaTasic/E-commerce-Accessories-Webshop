@@ -22,7 +22,7 @@ export function useStoreContext(){
     
         function removeItem(productId: number, quantity: number) {
             if (!basket) return;
-            const items = [...basket.items]; // new array of items
+            const items = [...basket.items]; 
             const itemIndex = items.findIndex(i => i.productId === productId);
             if (itemIndex >= 0) {
                 items[itemIndex].quantity -= quantity;

@@ -1,79 +1,16 @@
-import {
-  Alert,
-  AlertTitle,
-  Button,
-  ButtonGroup,
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import agent from "../../app/api/agent";
-import { useState } from "react";
+import { Typography } from "@mui/material";
 
-export default function AboutPage() {
-  const [validationErrors, setValidationErrors] = useState<string[]>([]);
+// AboutUs.tsx
 
-  function getValidationError() {
-    agent.TestErrors.getValidationError()
-      .then(() => console.log("should not see this"))
-      .catch((error) => setValidationErrors(error));
-  }
+import React from 'react';
+
+const AboutUs: React.FC = () => {
   return (
-    <Container>
-      <Typography gutterBottom variant="h2">
-        Errors for testing purposes
-      </Typography>
-      <ButtonGroup fullWidth>
-        <Button
-          variant="contained"
-          onClick={() =>
-            agent.TestErrors.get400Error().catch((error) => console.log(error))
-          }
-        >
-          Test 400 Error
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() =>
-            agent.TestErrors.get401Error().catch((error) => console.log(error))
-          }
-        >
-          Test 401 Error
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() =>
-            agent.TestErrors.get404Error().catch((error) => console.log(error))
-          }
-        >
-          Test 404 Error
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() =>
-            agent.TestErrors.get500Error().catch((error) => console.log(error))
-          }
-        >
-          Test 500 Error
-        </Button>
-        <Button
-          variant="contained"
-          onClick={getValidationError}>
-          Test Validation Error
-        </Button>
-      </ButtonGroup>
-      {validationErrors.length > 0 && (
-        <Alert severity="error">
-          <AlertTitle>Validation Errors</AlertTitle>
-          <List>{validationErrors.map(error=>(
-            <ListItem key={error}>
-              <ListItemText>{error}</ListItemText>
-            </ListItem>
-          ))}</List>
-        </Alert>
-      )}
-    </Container>
+    <div className="about-us">
+      <h2>About Us</h2>
+      <p>Welcome to Accessories shop, your premier destination for high-quality accessories that complement your unique style. At our company, we believe that accessories are more than just adornments; they are expressions of individuality and personal taste. Our carefully curated collection features everything from timeless classics to the latest trends, ensuring there's something for everyone. Whether you're looking for a statement piece to elevate your outfit or a thoughtful gift for someone special, we are here to help you find exactly what you need. Explore our selection and discover how the perfect accessory can transform your look.</p>
+    </div>
   );
-}
+};
+
+export default AboutUs;

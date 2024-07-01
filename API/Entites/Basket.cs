@@ -10,6 +10,8 @@ namespace API.Entites
         public int Id { get; set; }
         public string BuyerId { get; set; }
         public List<BasketItem> Items { get; set; } = new();
+        public string PaymentIntentId { get; set; }
+        public string ClientSecret { get; set; }
         public void AddItem(Product product, int quantity)
         {
             if (Items.All(item => item.ProductId != product.Id))
@@ -27,13 +29,16 @@ namespace API.Entites
             }
         }
 
-        public void RemoveItem(int productId, int quantity){
-            var item = Items.FirstOrDefault(item=>item.ProductId == productId);
-            if(item==null){
+        public void RemoveItem(int productId, int quantity)
+        {
+            var item = Items.FirstOrDefault(item => item.ProductId == productId);
+            if (item == null)
+            {
                 return;
             }
             item.Quantity -= quantity;
-            if(item.Quantity == 0){
+            if (item.Quantity == 0)
+            {
                 Items.Remove(item);
             }
         }
